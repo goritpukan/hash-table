@@ -18,9 +18,10 @@ public class HashTable
     private byte[] T1;
     private byte[] T2;
     private HashEntry[] table;
-    private int size = 1031;
-    public HashTable()
+    private int size;
+    public HashTable(int size = 100)
     {
+        this.size = size;
         table = new HashEntry[size];
         do
         {
@@ -87,7 +88,10 @@ public class HashTable
                 break;
 
             if (!table[index].IsDeleted && table[index].Key == key)
+            {
+                Console.WriteLine($"Compares: {i + 1}");
                 return table[index].Value;
+            }
         }
         throw new KeyNotFoundException("Key not found");
     }
